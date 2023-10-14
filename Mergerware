@@ -1,0 +1,26 @@
+// Mergerware Corporation
+
+// Create a registration form template
+<template name="registerForm">
+  <form id="register-form">
+    <input type="text" name="email" placeholder="Email">
+    <input type="password" name="password" placeholder="Password">
+    <button type="submit">Register</button>
+  </form>
+</template>
+
+// Handle user registration in JavaScript
+Template.registerForm.events({
+  'submit #register-form': function (event) {
+    event.preventDefault();
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    Accounts.createUser({ email: email, password: password }, function (error) {
+      if (!error) {
+        // User successfully registered
+      } else {
+        // Handle registration error
+      }
+    });
+  },
+});
